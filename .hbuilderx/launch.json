@@ -1,0 +1,27 @@
+{
+    "version" : "1.0",
+    "configurations" : [
+        {
+            "bundleId" : "io.dcloud.uniappx",
+            "certificateFile" : "/Users/hx/Desktop/cert/通配符证书/dev_123.p12",
+            "certificateProfileFile" : "/Users/hx/Desktop/cert/通配符证书/wildcard.mobileprovision",
+            "runSignStatus" : 1,
+            "type" : "uni-app:app-ios"
+        },
+        {
+            "playground" : "standard",
+            "type" : "uni-app:app-ios_simulator"
+        },
+        {
+            "playground" : "standard",
+            "type" : "uni-app:app-android"
+        },
+	{
+		"app-plus" : 
+		{
+			"launchtype" : "local"
+		},
+		"type" : "uniCloud"
+	}
+    ]
+}
