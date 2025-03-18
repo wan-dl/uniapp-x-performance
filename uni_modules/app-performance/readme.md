@@ -2,8 +2,6 @@
 
 此UTS插件用于在App里，获取当前App所占用的内存。
 
-目前仅支持Android，暂不支持iOS.
-
 ```vue
 <template>
     <view>
@@ -14,7 +12,7 @@
 </template>
 
 <script setup lang="uts">
-    import { getAppMemory } from '@/uni_modules/app-performance-memory';
+    import { getAppMemory } from '@/uni_modules/app-performance';
     
     type Obj = {
         TotalPss: string;
