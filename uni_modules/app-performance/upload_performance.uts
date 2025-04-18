@@ -1,0 +1,98 @@
+import { getAppMemory } from '@/uni_modules/app-performance';
+import { getAppCpuUsage } from '@/uni_modules/app-performance';
+
+/**
+ * @description 上传内存数据
+ */
+function uploadAppMemory() {
+    let memory_data : any = getAppMemory();
+    let memory_value = (memory_data as UTSJSONObject)["TotalPss"] as String;
+    console.log("========memory========", memory_value);
+    
+    let project_name = import.meta.env.VITE_PROJECT_NAME;
+    let task_id = import.meta.env.VITE_TASK_ID;
+    let test_id = import.meta.env.VITE_TEST_ID;
+    let hbuilderx_version = import.meta.env.VITE_HBUILDERX_VERSION;
+    let platform = import.meta.env.VITE_PLATFORM;
+    let DeviceDisplayName = import.meta.env.VITE_DeviceDisplayName;
+    let task_creator_name = import.meta.env.VITE_task_creator_name;
+    let task_description = import.meta.env.VITE_task_description;
+    // console.log(task_id, hbuilderx_version, platform, DeviceDisplayName);
+    
+    let data = {
+        "project_name": project_name,
+        "task_id": task_id,
+        "test_id": test_id,
+        "hbuilderx_version": hbuilderx_version,
+        "test_device_name": DeviceDisplayName,
+        "task_creator_name": task_creator_name,
+        "task_description": task_description,
+        "platform": platform,
+        "memory_value": memory_value
+    };
+        
+    uni.request({
+        url: 'http://192.168.12.98/api/app/memory/record',
+        method: 'POST',
+        data: data,
+        success: res => {
+            console.log("uniapp-x memory数据上报成功!", res.data);
+        },
+        fail: error => {
+            console.log("uniapp-x memory数据上报失败!", error);
+        }
+    });
+};
+
+
+/**
+ * @description 上传CPU数据
+ */
+function uploadAppCPUData() {
+    let cpu_data : any = getAppCpuUsage();
+    let cpu_value = (cpu_data as UTSJSONObject)["cpuUsage"] as String;
+    console.log("========cpu========", cpu_value);
+    
+    let project_name = import.meta.env.VITE_PROJECT_NAME;
+    let task_id = import.meta.env.VITE_TASK_ID;
+    let test_id = import.meta.env.VITE_TEST_ID;
+    let hbuilderx_version = import.meta.env.VITE_HBUILDERX_VERSION;
+    let platform = import.meta.env.VITE_PLATFORM;
+    let DeviceDisplayName = import.meta.env.VITE_DeviceDisplayName;
+    let task_creator_name = import.meta.env.VITE_task_creator_name;
+    let task_description = import.meta.env.VITE_task_description;
+    // console.log(task_id, hbuilderx_version, platform, DeviceDisplayName);
+    
+    let data = {
+        "project_name": project_name,
+        "task_id": task_id,
+        "test_id": test_id,
+        "hbuilderx_version": hbuilderx_version,
+        "test_device_name": DeviceDisplayName,
+        "task_creator_name": task_creator_name,
+        "task_description": task_description,
+        "platform": platform,
+        "cpu_usage": cpu_value
+    };
+        
+    uni.request({
+        url: 'http://192.168.12.98/api/app/cpu/record',
+        method: 'POST',
+        data: data,
+        success: res => {
+            console.log("uniapp-x cpu数据上报成功!", res.data);
+        },
+        fail: error => {
+            console.log("uniapp-x cpu数据上报失败!", error);
+        }
+    });
+};
+
+
+export function uploadAppPerformanceData() {
+    let platform = import.meta.env.VITE_PLATFORM;
+    uploadAppMemory();
+    if (platform == "harmony") {
+        uploadAppCPUData();
+    };
+};

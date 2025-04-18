@@ -1,4 +1,5 @@
 import { getMemory } from '../interface.uts';
+import { getCpuUsage } from '../interface.uts';
 
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
@@ -12,4 +13,14 @@ export const getAppMemory : getMemory = function () : UTSJSONObject {
     let pssv: string = (Number(pss) / 1024).toFixed(2);
     result['TotalPss'] = pssv;
     return result;
-}
+};
+
+
+export const getAppCpuUsage : getCpuUsage = function () : UTSJSONObject {
+    let result : UTSJSONObject = {
+        "cpuUsage": 0
+    };
+    let v: number = hidebug.getCpuUsage();
+    result['cpuUsage'] = v;
+    return result;
+};

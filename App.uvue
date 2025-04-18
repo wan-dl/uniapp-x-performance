@@ -1,8 +1,28 @@
 <script lang="uts">
+    
+    // #ifdef APP-PLUS || APP-IOS || APP-HARMONY || APP-ANDROID
+    import { uploadAppPerformanceData } from "@/uni_modules/app-performance/upload_performance.uts";
+    // #endif
+    
     let firstBackTime=0
     export default {
         onLaunch: function() {
-            console.log('App Launch')
+            console.log('App Launch');
+            
+            // #ifdef APP-PLUS || APP-IOS
+            const systemInfo = uni.getSystemInfoSync();
+            if (parseInt(systemInfo.osVersion) > 15) {
+                setInterval(() => {
+                    uploadAppPerformanceData();
+                }, 1500)
+            };
+            // #endif
+            
+            // #ifdef APP-PLUS || APP-HARMONY || APP-ANDROID
+            setInterval(() => {
+                uploadAppPerformanceData();
+            }, 1500);
+            // #endif
         },
         onShow: function() {
             console.log('App Show')

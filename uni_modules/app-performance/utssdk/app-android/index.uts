@@ -1,4 +1,5 @@
 import { getMemory } from '../interface.uts'
+import { getCpuUsage } from '../interface.uts';
 
 import Process from 'android.os.Process';
 import Context from 'android.content.Context';
@@ -42,4 +43,11 @@ export const getAppMemory : getMemory = function () : UTSJSONObject {
     // 返回包含内存使用信息的字符串
     // return `Total PSS: ${totalPss}MB\nTotal Private Dirty: ${totalPrivateDirty}MB\nTotal Shared Dirty: ${totalSharedDirty}MB`;
     return result;
-}
+};
+
+export const getAppCpuUsage : getCpuUsage = function () : UTSJSONObject {
+    let result : UTSJSONObject = {
+        "cpuUsage": 0
+    };
+    return result;
+};
