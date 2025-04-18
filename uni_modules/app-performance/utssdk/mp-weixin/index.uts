@@ -1,0 +1,16 @@
+import { getMemory } from '../interface.uts'
+import { getCpuUsage } from '../interface.uts';
+
+export const getAppMemory : getMemory = function () : UTSJSONObject {
+    let result : UTSJSONObject = {
+        "TotalPss": 0
+    };
+    return result; 
+};
+
+export const getAppCpuUsage : getCpuUsage = function () : UTSJSONObject {
+    let result : UTSJSONObject = {
+        "cpuUsage": 0
+    };
+    return result;
+};
