@@ -89,10 +89,9 @@ function uploadAppCPUData() {
 };
 
 
-export function uploadAppPerformanceData() {
-    let platform = import.meta.env.VITE_PLATFORM;
+export function uploadAppPerformanceData(tt_osName='') {
     uploadAppMemory();
-    if (platform == "harmony") {
+    if (tt_osName == "harmonyos") {
         uploadAppCPUData();
     };
 };

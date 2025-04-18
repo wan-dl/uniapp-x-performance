@@ -9,18 +9,20 @@
         onLaunch: function() {
             console.log('App Launch');
             
+            const tt_systemInfo = uni.getSystemInfoSync();
+            let tt_osName = tt_systemInfo.osName;
+            
             // #ifdef APP-PLUS || APP-IOS
-            const systemInfo = uni.getSystemInfoSync();
-            if (parseInt(systemInfo.osVersion) > 15) {
+            if (parseInt(tt_systemInfo.osVersion) > 15) {
                 setInterval(() => {
-                    uploadAppPerformanceData();
+                    uploadAppPerformanceData(tt_osName);
                 }, 1500)
             };
             // #endif
             
             // #ifdef APP-PLUS || APP-HARMONY || APP-ANDROID
             setInterval(() => {
-                uploadAppPerformanceData();
+                uploadAppPerformanceData(tt_osName);
             }, 1500);
             // #endif
         },
