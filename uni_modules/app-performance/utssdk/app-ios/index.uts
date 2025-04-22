@@ -17,5 +17,9 @@ export const getAppCpuUsage : getCpuUsage = function () : UTSJSONObject {
     let result : UTSJSONObject = {
         "cpuUsage": 0
     };
+    let val = getCPUUsage();
+    if (val != null) {
+        result["cpuUsage"] = val;
+    };
     return result;
 };

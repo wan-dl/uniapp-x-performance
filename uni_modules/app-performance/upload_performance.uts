@@ -91,7 +91,7 @@ function uploadAppCPUData() {
 
 export function uploadAppPerformanceData(tt_osName='') {
     uploadAppMemory();
-    if (tt_osName == "harmonyos") {
+    if (tt_osName == "harmonyos" || tt_osName == "ios") {
         uploadAppCPUData();
     };
 };

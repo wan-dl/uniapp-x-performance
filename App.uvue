@@ -11,7 +11,7 @@
             
             const tt_systemInfo = uni.getSystemInfoSync();
             let tt_osName = tt_systemInfo.osName;
-            
+            console.log("-->", tt_osName)
             // #ifdef APP-PLUS || APP-IOS
             if (parseInt(tt_systemInfo.osVersion) > 15) {
                 setInterval(() => {
